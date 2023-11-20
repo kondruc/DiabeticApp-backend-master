@@ -304,7 +304,7 @@ const addBloodGlucoseBeforeMeal = async (req, res) => {
     const updatedUserMeal = await userBloodGlucoseSchema.findOneAndUpdate(
       { userId,
        mealType,
-       mealDate: { $eq: currentDate }},
+       mealDate:  currentDate },
        { bloodGlucoseBeforeMeal },
        { new: true , upsert: true}
     );
