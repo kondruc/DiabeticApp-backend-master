@@ -291,11 +291,11 @@ const addBloodGlucoseBeforeMeal = async (req, res) => {
     const currentDate = new Date().toLocaleDateString("en-GB");
 
     const updatedUserMeal = await userBloodGlucoseSchema.findOneAndUpdate(
-      { userId ,
-        mealType ,
-        mealDate: { $eq: currentDate },
-        bloodGlucoseBeforeMeal,
-        new: true }
+      { userId },
+       { mealType },
+       { mealDate: { $eq: currentDate }},
+       { bloodGlucoseBeforeMeal },
+       { new: true }
     );
 
     if (updatedUserMeal) {
