@@ -21,6 +21,6 @@ const userBloodGlucose = new mongoose.Schema({
 });
 
 module.exports = userBloodGlucose = mongoose.model(
-  "userBloodGlucose",
-  userBloodGlucose
+  "userBloodGlucoseSchema",
+  userBloodGlucoseSchema
 );
