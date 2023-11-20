@@ -72,43 +72,43 @@ const storeUserData = (req, res) => {
   });
 
 
-const newUserBloodGlucoseSchema = new userBloodGlucoseSchema({
-  userId,
-  mealDate,
-  mealType,
-  bloodGlucoseBeforeMeal,
-});
+// const newUserBloodGlucoseSchema = new userBloodGlucoseSchema({
+//   userId,
+//   mealDate,
+//   mealType,
+//   bloodGlucoseBeforeMeal,
+// });
 
-newUserBloodGlucoseSchema.save().then((userBloodSchema) => {
+// newUserBloodGlucoseSchema.save().then((userBloodSchema) => {
 
-});
+// });
 
-userBloodGlucoseSchema
-    .findOne({
-      userId: userId,
-      mealDate: mealDate,
-      mealType: mealType,
-      bloodGlucoseBeforeMeal : bloodGlucoseBeforeMeal,
-    })
-    .then((existingDate) => {
-      if (existingDate) {
-        // If mealDate already exists, do not save a new entry
-        console.log("MealDate already exists");
-        return;
-      }
-      console.log("New Date ");
-      const newUserBloodGlucoseSchema = new newUserBloodGlucoseSchema({
-        userId,
-        mealDate,
-        mealType,
-        bloodGlucoseBeforeMeal,
-      });
+// userBloodGlucoseSchema
+//     .findOne({
+//       userId: userId,
+//       mealDate: mealDate,
+//       mealType: mealType,
+//       bloodGlucoseBeforeMeal : bloodGlucoseBeforeMeal,
+//     })
+//     .then((existingDate) => {
+//       if (existingDate) {
+//         // If mealDate already exists, do not save a new entry
+//         console.log("MealDate already exists");
+//         return;
+//       }
+//       console.log("New Date ");
+//       const newUserBloodGlucoseSchema = new newUserBloodGlucoseSchema({
+//         userId,
+//         mealDate,
+//         mealType,
+//         bloodGlucoseBeforeMeal,
+//       });
 
-      newUserBloodGlucoseSchema.save().then((userBloodSchema) => {
-        // Handle successful save
-        console.log("New user blood glucose saved ");
-      });
-    });
+//       newUserBloodGlucoseSchema.save().then((userBloodSchema) => {
+//         // Handle successful save
+//         console.log("New user blood glucose saved ");
+//       });
+//     });
   };
 // Calculate new ICR based on historical data
 function calculateNewICR(data) {
@@ -301,12 +301,12 @@ const addBloodGlucoseBeforeMeal = async (req, res) => {
     const { userId, mealType, bloodGlucoseBeforeMeal } = req.body;
     const currentDate = new Date().toLocaleDateString("en-GB");
 
-    const updatedUserMeal = await userBloodGlucoseSchema.save(
-      { userId },
-       { mealType },
-       { mealDate: { $eq: currentDate }},
+    const updatedUserMeal = await userBloodGlucoseSchema.findOneAndUpdate(
+      { userId,
+       mealType,
+       mealDate: { $eq: currentDate }},
        { bloodGlucoseBeforeMeal },
-       { new: true }
+       { new: true , upsert: true}
     );
 
     if (updatedUserMeal) {
