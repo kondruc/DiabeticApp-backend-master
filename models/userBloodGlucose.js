@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userBloodGlucose = new mongoose.Schema({
+const userBloodGlucoseSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,

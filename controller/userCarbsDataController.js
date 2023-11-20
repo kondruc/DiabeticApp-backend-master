@@ -265,7 +265,7 @@ const bloodGlucoseBefore = async (req, res) => {
   try {
     const { userId, mealType, bloodGlucoseBefore } = req.body;
 
-    const updatedUserMeal = await userBloodGlucoseSchema.findOneAndUpdate(
+    const updatedUserMeal = await userBloodGlucose.findOneAndUpdate(
       { userId, mealType },
       { bloodGlucoseBefore },
       { new: true }
@@ -290,7 +290,7 @@ const addBloodGlucoseBeforeMeal = async (req, res) => {
     const { userId, mealType, bloodGlucoseBeforeMeal } = req.body;
     const currentDate = new Date().toLocaleDateString("en-GB");
 
-    const updatedUserMeal = await userBloodGlucose.findOneAndUpdate(
+    const updatedUserMeal = await userBloodGlucoseSchema.findOneAndUpdate(
       { userId ,
         mealType ,
         mealDate: { $eq: currentDate },
