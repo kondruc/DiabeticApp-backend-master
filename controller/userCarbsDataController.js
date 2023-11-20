@@ -301,7 +301,7 @@ const addBloodGlucoseBeforeMeal = async (req, res) => {
     const { userId, mealType, bloodGlucoseBeforeMeal } = req.body;
     const currentDate = new Date().toLocaleDateString("en-GB");
 
-    const updatedUserMeal = await userBloodGlucoseSchema.findOneAndUpdate(
+    const updatedUserMeal = await userBloodGlucoseSchema.save(
       { userId },
        { mealType },
        { mealDate: { $eq: currentDate }},
