@@ -19,6 +19,7 @@ router.put("/addBloodGlucose", dataController.addBloodGlucose); // Add BloodGluc
 
 router.put("/bloodGlucoseBefore",dataController.bloodGlucoseBefore);
 
+router.get("/getBloodGlucoseBeforeMeal",dataController.getBloodGlucoseBeforeMeal);
 
 router.post("/addBloodGlucoseBeforeMeal",dataController.addBloodGlucoseBeforeMeal);
 

@@ -322,6 +322,28 @@ const addBloodGlucoseBeforeMeal = async (req, res) => {
   }
 };
 
+const getBloodGlucoseBeforeMeal = async (req, res) => {
+  try {
+    const { userId, mealType } = req.query;
+    const currentDate = new Date().toLocaleDateString("en-GB");
+    console.log("Find Date :", currentDate);
+    const userMeal = await userBloodGlucoseSchema.findOne({
+      userId,
+      mealType,
+      mealDate: { $eq: currentDate },
+    });
+
+    if (userMeal) {
+      res.status(200).json(userMeal);
+    } else {
+      res.status(404).json(null);
+    }
+  } catch (error) {
+    console.error("Error fetching user meal:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const getCarbDetailsHomeScreen = async (req, res) => {
   try {
     const { userId } = req.query;
@@ -352,4 +374,5 @@ module.exports = {
   addBloodGlucose,
   bloodGlucoseBefore,
   addBloodGlucoseBeforeMeal,
+  getBloodGlucoseBeforeMeal,
 };
