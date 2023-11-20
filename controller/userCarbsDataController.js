@@ -74,10 +74,10 @@ const storeUserData = (req, res) => {
 
 userBloodGlucoseSchema
     .findOne({
-      userId,
+      userId: userId,
       mealDate: mealDate,
       mealType: mealType,
-      bloodGlucoseBeforeMeal : bloodGlucoseBeforeMeal
+      bloodGlucoseBeforeMeal : bloodGlucoseBeforeMeal,
     })
     .then((existingDate) => {
       if (existingDate) {
@@ -90,7 +90,7 @@ userBloodGlucoseSchema
         userId,
         mealDate,
         mealType,
-        bloodGlucoseBeforeMeal
+        bloodGlucoseBeforeMeal,
       });
 
       newUserBloodGlucoseSchema.save().then((userBloodSchema) => {
