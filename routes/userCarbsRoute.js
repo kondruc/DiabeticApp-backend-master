@@ -20,7 +20,7 @@ router.put("/addBloodGlucose", dataController.addBloodGlucose); // Add BloodGluc
 router.put("/bloodGlucoseBefore",dataController.bloodGlucoseBefore);
 
 
-router.put("/addBloodGlucoseBeforeMeal",dataController.addBloodGlucoseBeforeMeal);
+router.post("/addBloodGlucoseBeforeMeal",dataController.addBloodGlucoseBeforeMeal);
 
 router.get("/homeScreenCarbDetails", dataController.getCarbDetailsHomeScreen); // Get Carbs Details for home screen
 
