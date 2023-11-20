@@ -70,7 +70,18 @@ const storeUserData = (req, res) => {
     console.log("New userMealSchema saved");
     res.status(200).send("New userMealSchema saved");
   });
-};
+
+
+const newUserBloodGlucoseSchema = new userBloodGlucoseSchema({
+  userId,
+  mealDate,
+  mealType,
+  bloodGlucoseBeforeMeal,
+});
+
+newUserBloodGlucoseSchema.save().then((userBloodSchema) => {
+
+});
 
 userBloodGlucoseSchema
     .findOne({
@@ -98,7 +109,7 @@ userBloodGlucoseSchema
         console.log("New user blood glucose saved ");
       });
     });
-
+  };
 // Calculate new ICR based on historical data
 function calculateNewICR(data) {
   const targetBloodGlucose = 100;
